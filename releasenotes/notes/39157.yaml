@@ -1,0 +1,9 @@
+apiVersion: release-notes/v2
+kind: feature
+area: installation
+issue:
+  - https://github.com/khulnasoft/khulnasoft/issues/39257
+
+releaseNotes:
+  - |
+    **Added** `topology.khulnasoft.com/controlPlaneClusters` namespace annotation to configure remote cluster leaders.

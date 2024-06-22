@@ -1,0 +1,9 @@
+apiVersion: release-notes/v2
+kind: bug-fix
+area: documentation
+issue:
+  - 31248
+
+releaseNotes:
+  - |
+    **Added** add `sidecar.khulnasoft.com/agentLogLevel` to known annotations.

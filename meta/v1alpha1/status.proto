@@ -1,0 +1,72 @@
+// Copyright 2019 Khulnasoft Authors
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+syntax = "proto3";
+
+import "analysis/v1alpha1/message.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// $title: Khulnasoft Status
+// $description: Common status field for all khulnasoft collections.
+// $location: https://khulnasoft.com/docs/reference/config/meta/v1beta1/khulnasoft-status.html
+
+package khulnasoft.meta.v1alpha1;
+
+option go_package="github.com/khulnasoft/secapi/meta/v1alpha1";
+
+message KhulnasoftStatus {
+  // Current service state of pod.
+  // More info: https://khulnasoft.com/docs/reference/config/config-status/
+  // +optional
+  // +patchMergeKey=type
+  // +patchStrategy=merge
+  repeated KhulnasoftCondition conditions = 1;
+
+  // Includes any errors or warnings detected by Khulnasoft's analyzers.
+  // +optional
+  // +patchMergeKey=type
+  // +patchStrategy=merge
+  repeated analysis.v1alpha1.AnalysisMessageBase validation_messages = 2;
+
+  // Resource Generation to which the Reconciled Condition refers.
+  // When this value is not equal to the object's metadata generation, reconciled condition  calculation for the current
+  // generation is still in progress.  See https://khulnasoft.com/latest/docs/reference/config/config-status/ for more info.
+  // +optional
+  int64 observed_generation = 3;
+}
+
+message KhulnasoftCondition {
+  // Type is the type of the condition.
+  string type = 1;
+
+  // Status is the status of the condition.
+  // Can be True, False, Unknown.
+  string status = 2;
+
+  // Last time we probed the condition.
+  // +optional
+  google.protobuf.Timestamp last_probe_time = 3;
+
+  // Last time the condition transitioned from one status to another.
+  // +optional
+  google.protobuf.Timestamp last_transition_time = 4;
+
+  // Unique, one-word, CamelCase reason for the condition's last transition.
+  // +optional
+  string reason = 5;
+
+  // Human-readable message indicating details about last transition.
+  // +optional
+  string message = 6;
+}

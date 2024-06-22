@@ -1,0 +1,6 @@
+*                @khulnasoft/technical-oversight-committee 
+/Makefile*       @khulnasoft/wg-test-and-release-maintainers
+/*.md            @khulnasoft/wg-test-and-release-maintainers
+/common/         @khulnasoft/wg-test-and-release-maintainers
+/common-protos/  @khulnasoft/wg-test-and-release-maintainers
+/scripts/        @khulnasoft/wg-test-and-release-maintainers
